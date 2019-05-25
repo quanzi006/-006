@@ -1,0 +1,9 @@
+第一步：一个魔方六个面，也就是六个div,需一个父元素div控制魔方旋转，还需一个祖父元素div控制魔方位置。
+第二步：通过3D变换transform-style:preserve-3d,平移和旋转transform：translateXYZ（）rotateXYZ(),透视perspective，形成一个魔方；
+第三步：使用js,先用document.queryElement（“.content")或document.getElementByClassName("content")获取content选择器，然后
+使用for遍历6个面中的每一个面，再次使用两次for遍历外层循环行和内层循环列，由此得到6*3*3个小块，也就是每个面中有9个小块；
+第四步：在内层循环列中使用document.createElement("div")创建元素,此时相当于每个小块都是一个div，接着使用divs.style.cssText=""
+给每个div添加css样式；
+第五步：使用arr[n].appendChild(divs)将div添加到content中，接着使用divs.style.top/left=i/c*100+"px"将9个小块分别铺满六个面，然后使用
+divs.style.backgroundPositionX/Y=i/c*100+"px"将每张图片的位置相对应地放到9个小块中；
+第六步: 使用@keyframes ro/ao{}定义动画，然后使用animation调用动画。

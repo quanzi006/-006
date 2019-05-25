@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>爱情魔方</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin:0;
+		}
+		#container{
+			width: 300px;
+			height: 300px;
+			margin:250px auto;
+		}
+		.box{
+			width:300px;
+			height:300px;
+			/*控制子元素保持3d转换*/
+			transform-style: preserve-3d;
+			perspective: 20000px;
+			/*测试代码*/
+			/*transform: rotateX(45deg) rotateY(45deg);*/
+			animation: ro 4s linear infinite;
+		}
+		@keyframes ro{
+				0%{
+					transform: rotateX(0deg) rotateY(0deg);
+				}
+				100%{
+					transform: rotateX(360deg) rotateY(360deg);
+				}
+			}
+		.content div:nth-child(1){
+			animation: ao 5s ease-in infinite;
+		}
+		.content div:nth-child(2){
+			animation: ao 5s ease-in infinite;
+		}
+		.content div:nth-child(3){
+			animation: ao 5s ease-in infinite;
+		}
+		.content div:nth-child(4){
+			animation: ao 5s ease-in infinite;
+		}
+		.content div:nth-child(5){
+			animation: ao 5s ease-in infinite;
+		}
+		.content div:nth-child(6){
+			animation: ao 5s ease-in infinite ;
+		}
+		.content div:nth-child(7){
+			animation: ao 5s ease-in infinite ;
+		}
+		.content div:nth-child(8){
+			animation: ao 5s ease-in infinite ;
+		}
+		.content div:nth-child(9){
+			animation: ao 5s ease-in infinite;
+		}
+		@keyframes ao{
+			0%{
+				transform: translateZ(0px) scale(1) rotateZ(0deg);
+			}
+			25%{
+				transform: translateZ(300px) scale(0) rotateZ(720deg);
+			}
+			30%{
+				transform: translateZ(300px) scale(0) rotateZ(720deg);
+			}
+			55%{
+				transform: translateZ(0px) scale(1) rotateZ(0deg);
+			}
+			100%{
+				transform: translateZ(0px) scale(1) rotateZ(0deg);
+			}
+		}
+		.content{
+			width:300px;
+			height:300px;
+			/*位置初始化*/
+			position: absolute;
+			transform-style:preserve-3d;
+		}
+		.top{
+			/*background-color: red;*/
+			transform: translateZ(150px);
+		}
+		.bottom{
+			/*background-color: green;*/
+			transform: translateZ(-150px) rotateY(180deg);
+		}
+		.left{
+			/*background-color: orange;*/
+			transform: translateX(-150px) rotateY(-90deg);
+		}
+		.right{
+			/*background-color: pink;*/
+			transform:translateX(150px) rotateY(90deg);
+		}
+		.before{
+			/*background-color: blue;*/
+			transform: translateY(150px) rotateX(-90deg);
+		}
+		.after{
+			/*background-color: yellow;*/
+			transform: translateY(-150px) rotateX(90deg);
+		}
+	</style>
+</head>
+<body>
+	<!--------容器----------->
+	<div id="container">
+		<div class="box">
+			<div class="content top"></div>
+			<div class="content bottom"></div>
+			<div class="content left"></div>
+			<div class="content right"></div>
+			<div class="content before"></div>
+			<div class="content after"></div>
+		</div>
+	</div>
+	<script>
+		var arr=document.querySelectorAll(".content");
+		// var arr=document.getElementsByClassName("content");
+		// 遍历6个面中每一个面
+		for(var n=0;n<arr.length;n++){
+			// 外层循环行
+			for(var i=0;i<3;i++){
+				// 内层循环列
+				for(var c=0;c<3;c++){
+					// 创建元素
+					var divs=document.createElement("div");
+					divs.style.cssText="width:100px;height:100px;border:2px solid #fff;border-sizing:border-box;position:absolute;background-image:url(../img/a"+n+".jpg);background-size:300px 300px";
+					arr[n].appendChild(divs);
+					divs.style.left=c*100+"px";
+					divs.style.top=i*100+"px";
+					divs.style.backgroundPositionX=-c*100+"px";
+					divs.style.backgroundPositionY=-i*100+"px";
+				}
+			}
+		}
+	</script>
+</body>
+</html>
